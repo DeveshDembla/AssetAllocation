@@ -299,7 +299,12 @@ with tabs[1]:
 with tabs[2]:
     
     viewdict = {}
-
+    st.subheader("Black Litterman Implied Returns")
+    st.write("Black Litterman essentially uses a weighted average between the prior estimate of returns and the views, where the weighting is determined by the confidence in the views")
+    st.write("We can set absolute return views for one or multiple asset classes.")
+    st.write("Incorporating these views moves the expected return assumptions away from the historical mean returns vector")
+    
+    
 # Create a checkbox and slider for each asset class
     if st.checkbox("Set View for USA QUALITY"):
         quality_view = st.slider("USA QUALITY View", 0.05, 0.25, 0.08, 0.01)
@@ -323,7 +328,7 @@ with tabs[2]:
     
     rets = bl.bl_returns()
     
-    st.subheader("Black Litterman Implied Returns")
+    
     #Display BL Returns
     rets_df = rets.to_frame(name="Expected Return")
     st.dataframe(rets_df.style.format({
