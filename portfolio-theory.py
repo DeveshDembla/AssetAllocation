@@ -297,7 +297,28 @@ with tabs[1]:
             
         
 with tabs[2]:
-    viewdict = {'USA QUALITY' : 0.05}
+    
+    viewdict = {}
+
+# Create a checkbox and slider for each asset class
+    if st.checkbox("Set View for USA QUALITY"):
+        quality_view = st.slider("USA QUALITY View", 0.05, 0.25, 0.08, 0.01)
+        viewdict['USA QUALITY'] = quality_view
+    
+    if st.checkbox("Set View for USA LARGE VALUE"):
+        value_view = st.slider("USA LARGE VALUE View", 0.05, 0.25, 0.08, 0.01)
+        viewdict['USA LARGE VALUE'] = value_view
+    
+    if st.checkbox("Set View for USA LARGE GROWTH"):
+        growth_view = st.slider("USA LARGE GROWTH View", 0.05, 0.25, 0.08, 0.01)
+        viewdict['USA LARGE GROWTH'] = growth_view
+    
+    if st.checkbox("Set View for USA MINIMUM VOLATILITY"):
+        minvol_view = st.slider("USA MINIMUM VOLATILITY View", 0.05, 0.25, 0.08, 0.01)
+        viewdict['USA MINIMUM VOLATILITY'] = minvol_view
+    
+    
+    
     bl = black_litterman.BlackLittermanModel(cov_matrix, absolute_views=viewdict, pi=expected_returns)
     
     rets = bl.bl_returns()
